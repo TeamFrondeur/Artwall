@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Space Grotesk', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  width: 1024px;
+  height: 3742px;
+
+  background: #1C233D;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.custom_button {
+  box-sizing: border-box;
+
+  position: absolute;
+  width: 119px;
+  height: 50px;
+  left: 170px;
+  top: 292px;
+
+  border: 1px solid #FFFFFF;
+  border-radius: 5px;
+}
+
+.styled_text {
+  font-family: 'Lusitana', serif;
+
+  font-family: 'Raleway', sans-serif;
+}
+
+.inputfield {
+  box-sizing: border-box;
+
+  position: relative;
+  width: 379px;
+  height: 45px;
+  left: 40px;
+  top: 123px;
+
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
+
+.inputtext {
+  position: absolute;
+  width: 87%;
+  height: 20px;
+  left: 22px;
+  top: 12px;
+  
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  
+  color: rgba(0, 0, 0, 0.5);
+  
+}
+
+input {
+  border: 0px;
+  width: 100%;
+}
+
+.signup {
+  position: absolute;
+  width: 458px;
+  height: 451px;
+  left: 40%;
+  top: 184px;
+
+  background: #30384D;
+  border-radius: 5px;
+}
+
+.signup_label {
+  position: absolute;
+  width: 238px;
+  height: 51px;
+  left: 110px;
+  top: 25px;
+
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 51px;
+
+  /* identical to box height */
+
+  color: #FFFFFF;
+}
+
+.password {
+  position: relative;
+  top: 35px;
+}
+
+.signup_header_label {
+  position: absolute;
+  width: 238px;
+  height: 51px;
+  left: 55%;
+  top: 25px;
+
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 51px;
+
+  /* identical to box height */
+
+  color: #FFFFFF;
+}
+
+.paragraph {
+
+  position: absolute;
+  width: 201px;
+  height: 20px;
+  left: 129px;
+  top: 388px;
+
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+
+  color: #FFFFFF;
+}

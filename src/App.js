@@ -1,11 +1,11 @@
-import SignUp from "./components/SignUp";
-import SignupLabel from "./components/SignupLabel";
+import Paragraph from "./components/Paragraph";
+import Registration from "./components/Registration";
+
 
 function App() {
   return (
     <div className="App">
-      <SignupLabel />
-      <SignUp label="Registration" />
+      <Registration />
     </div>
   );
 }

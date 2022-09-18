@@ -5,9 +5,7 @@ const InputField = ({type}) => {
         flag = true;
     
     return (
-
-        <form className="inputfield">
-            
+        <form className="inputfield">        
             <div className="inputtext">
                 <input type = {flag ? "text" : "password"} placeholder={type} />
             </div>

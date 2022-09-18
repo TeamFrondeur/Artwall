@@ -38,13 +38,12 @@ code {
 
 .inputfield {
   box-sizing: border-box;
-
   position: relative;
   width: 379px;
   height: 45px;
   left: 40px;
   top: 123px;
-
+  margin-top: 2.5%;
   background: #FFFFFF;
   border: 1px solid #000000;
   border-radius: 5px;
@@ -73,7 +72,8 @@ input {
 }
 
 .signup {
-  position: absolute;
+  align-items: center;
+  position: relative;
   width: 458px;
   height: 451px;
   left: 40%;

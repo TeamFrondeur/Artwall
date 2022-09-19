@@ -1,4 +1,3 @@
-import Paragraph from "./components/Paragraph";
 import Registration from "./components/Registration";
 
 

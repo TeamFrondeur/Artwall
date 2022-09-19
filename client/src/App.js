@@ -1,10 +1,10 @@
-import Registration from "./components/Registration";
+import LandingPage from "./components/LandingPage";
 
 
 function App() {
   return (
     <div className="App">
-      <Registration />
+      <LandingPage />
     </div>
   );
 }

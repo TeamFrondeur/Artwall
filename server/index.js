@@ -31,6 +31,7 @@ app.post("/register", (req, res) => {
         console.log(err);
     })
 })
+
 app.listen(3001, () => {
     console.log("running on port 3001");
 });

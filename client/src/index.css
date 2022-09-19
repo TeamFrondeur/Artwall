@@ -189,3 +189,18 @@ input {
   color: #FD55FD;
 }
 
+
+
+.signupButton {
+  background: linear-gradient(85.76deg, rgba(191, 196, 238, 0.0945738) -105.02%, #C367E6 10.94%, rgba(190, 206, 239, 0) 121.57%);
+  border-radius: 5px; 
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 26px;
+
+  /* identical to box height */
+
+   color: #E5E5E5; 
+}

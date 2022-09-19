@@ -4,7 +4,7 @@ import Axios from 'axios'
 
 const Button = ({type, email, password}) => {
     const submit = () => {
-        Axios.post("http://localhost3001/register", {
+        Axios.post("https://localhost:3001/register", {
             email: {email},
             password: {password}
         }).then((response) => {

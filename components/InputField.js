@@ -12,8 +12,8 @@ const InputField = ({type, getValue}) => {
 
     return (
         <form className="inputfield">        
-            <div className="inputtext">
-                <input type = {flag ? "text" : "password"} placeholder={type} onChange={(e) => {
+            <div>
+                <input type = {flag ? "text" : "password"} placeholder={flag ? "Email" : "Password"} className='sm form-input rounded-md' onChange={(e) => {
                     if (type === "E-mail")
                     {
                         setEmailReg(e.target.value);

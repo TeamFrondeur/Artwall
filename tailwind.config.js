@@ -15,6 +15,10 @@ module.exports = {
         "Artwall": '#FD55FD',
       }
     },
+    scale: {
+      '65': '0.65',
+      '70': '0.70'
+    },
   },
   plugins: [
     require('@tailwindcss/forms')

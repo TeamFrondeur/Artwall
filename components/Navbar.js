@@ -16,6 +16,9 @@ const Navbar = () => {
                 <Link href="/artists">Artists</Link>
             </li>
             <li>
+                <Link href='/collections'>Collections</Link>
+            </li>
+            <li>
                 <form>
                     <input type="search" className="form-input px-4 py-0 rounded-full" placeholder="Search" />
                 </form>

@@ -12,10 +12,15 @@ const UserForm = ({type}) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-  const postData = async () => {
+  const postData = async (event) => {
+      event.preventDefault();
+      
       const response = await fetch('/api/registeruser', {
       method: 'POST',
       body: JSON.stringify( {email: email, password: password}),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
     const data = await response.json();
     console.log(data);

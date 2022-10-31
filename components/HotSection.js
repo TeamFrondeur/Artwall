@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import MiniArtCard from './MiniArtCard';
 
 const HotSection = () => {
 
@@ -29,7 +30,20 @@ const HotSection = () => {
             <button className='rounded-lg py-2 px-3 text-l font-bold cursor-pointer tracking-wider border-primary border-2 text-white'>More</button>
         </div>
         <div className='grid grid-cols-3'>
-
+          {dataResponse.map((results) => {
+            return (
+              <div key={results.idART}> 
+                <MiniArtCard 
+                  image={results.art} 
+                  artname={results.name} 
+                  artist={results.name} 
+                  bid={results.bid} 
+                  bidders={results.bidders} 
+                  timer={results.timer}
+                />
+              </div>
+            )
+          })}
         </div>
     </div>
     

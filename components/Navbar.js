@@ -24,12 +24,11 @@ const Navbar = () => {
                 </form>
             </li>
             <li>
-                <Link href="/registration">
+                <Link href="/login">
                     <button className="btn border-primary border-2 rounded-md">
-                        Signup
+                        Login
                     </button>
                 </Link>
-                
             </li>
         </ul>
     </nav>

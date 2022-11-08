@@ -13,19 +13,21 @@ const InputField = ({type, getValue}) => {
     return (
         <form className="inputfield">        
             <div>
-                <input type = {flag ? "text" : "password"} placeholder={flag ? "Email" : "Password"} className='sm form-input rounded-md' onChange={(e) => {
+                <input value={flag? emailReg : passwordReg} type = {flag ? "text" : "password"} placeholder={flag ? "Email" : "Password"} className='sm form-input rounded-md' onChange={(e) => {
                     if (type === "E-mail")
                     {
-                        setEmailReg(e.target.value);
+                        setEmailReg(e.target?.value);
                         getValue(emailReg);
+                        console.log("Email: ", emailReg)
                     }
                     else 
                     {
-                        setPasswordReg(e.target.value);
+                        setPasswordReg(e.target?.value);
                         getValue(passwordReg);
+                        console.log("Password: ", passwordReg);
                     } 
                 }} />
-            </div>
+            </div>  
         </form>
     )
 }

@@ -1,12 +1,11 @@
 import React from 'react'
-
-import UserForm from '../components/UserForm'
+import LoginForm from '../components/LoginForm'
 
 const login = () => {
   return (
     <div className='bg-Main h-screen w-screen'>
         <div className='flex justify-center items-center py-10'>
-            <UserForm type={"Login"}/>
+            <LoginForm />
         </div>
     </div>
   )

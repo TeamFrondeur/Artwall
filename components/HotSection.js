@@ -1,3 +1,4 @@
+import { data } from 'autoprefixer';
 import React, { useEffect, useState } from 'react'
 import MiniArtCard from './MiniArtCard';
 
@@ -7,7 +8,7 @@ const HotSection = () => {
 
   useEffect(() => {
     async function getPageData() {
-        const apiUrlEndpoint = `http://localhost:3000/api/getdata`;
+        const apiUrlEndpoint = `http://localhost:3000/api/gethotdata`;
         const response = await fetch(apiUrlEndpoint);
         const res = await response.json();
         console.log(res.results);
@@ -30,20 +31,23 @@ const HotSection = () => {
             <button className='rounded-lg py-2 px-3 text-l font-bold cursor-pointer tracking-wider border-primary border-2 text-white'>More</button>
         </div>
         <div className='grid grid-cols-3'>
-          {dataResponse.map((results) => {
+          {/* {data.map((result) => {
             return (
-              <div key={results.idART}> 
+              <div key={result.idART}> 
                 <MiniArtCard 
-                  image={results.art} 
-                  artname={results.name} 
-                  artist={results.name} 
-                  bid={results.bid} 
-                  bidders={results.bidders} 
-                  timer={results.timer}
+                  image={result.art} 
+                  artname={result.name} 
+                  artist={result.name} 
+                  bid={result.bid} 
+                  bidders={result.bidders}
                 />
               </div>
             )
-          })}
+          })} */}
+
+          <MiniArtCard image={dataResponse.artPath} artname={dataResponse.artName} 
+            artist={dataResponse.imagePath} bid={dataResponse.currentBid}
+            bidders={dataResponse.numBidders}/>
         </div>
     </div>
     

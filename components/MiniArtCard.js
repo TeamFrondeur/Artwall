@@ -3,10 +3,10 @@ import Image from 'next/image'
 const MiniArtCard = ({image, artname, artist, bid, bidders, timer}) => {
   return (
     <div className='bg-Card h-[29rem] w-[22rem] rounded-md flex flex-col font-Space'>
-      <Image src='/images/${image}' className='rounded-lg self-center my-6' alt='' width='200' height='100'/>
+      <Image src={`/images/${image}`} className='rounded-lg self-center my-6' alt='' width='200' height='100'/>
       <div className='flex flex-row justify-between px-6'>
-        <h1 className='text-lg text-white'>Ensalada y Sol</h1>
-        <Image src='/images/${image}' width='45' height='45' className='rounded-full' alt='' />
+        <h1 className='text-lg text-white'>{artname}</h1>
+        <Image src={`/images/${artist}`} width='45' height='45' className='rounded-full' alt='' />
       </div>
       <div className='flex flex-row py-2 px-2 justify-around'>
         <ul className='flex flex-col items-center'>
@@ -14,7 +14,7 @@ const MiniArtCard = ({image, artname, artist, bid, bidders, timer}) => {
             <h2 className='text-gray-500 text-lg'>Current Bid</h2>
           </li>
           <li>
-            <h3 className='text-white text-md'>100,000 BDT</h3>
+            <h3 className='text-white text-md'>{bid} BDT</h3>
           </li>
         </ul>
         <ul className='flex flex-col items-center'>
@@ -22,7 +22,7 @@ const MiniArtCard = ({image, artname, artist, bid, bidders, timer}) => {
             <h2 className='text-gray-500 text-lg'>Bidders</h2>
           </li>
           <li>
-            <h3 className='text-white text-md'>900</h3>
+            <h3 className='text-white text-md'>{bidders}</h3>
           </li>
         </ul>
         <ul className='flex flex-col items-center'>

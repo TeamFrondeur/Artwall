@@ -7,14 +7,14 @@ import InstructSection from '../components/InstructSection'
 import TopSection from '../components/TopSection'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+export default function Home({data}) {
   return (
     <>
       <div className='bg-Main flex justify-center'>
         <TopSection />
       </div>
       <div className='bg-Main flex justify-center py-20'>
-        <HotSection />
+        <HotSection data={data}/>
       </div>
       <div className='bg-Main flex justify-center py-20'>
         <InstructSection />
@@ -25,3 +25,11 @@ export default function Home() {
     </>
   )
 }
+
+
+// export async function getServerSideProps() {
+//   const res = await fetch(`http://localhost:3000/api/gethotdata`);
+//   const data = await res.json();
+//   console.log(data);
+//   return { props: {data} }
+// }

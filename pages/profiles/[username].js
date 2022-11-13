@@ -10,7 +10,8 @@ const ProfileDetail = () => {
     const router = useRouter();
     const { username } = router.query;
     const [dataResponse, setDataResponse] = useState([]);
-
+    const [artResponse, setArtResponse] = useState([]);
+    
     useEffect(() => {
         async function getProfileData() {
             const response = await fetch('/api/getprofile', {

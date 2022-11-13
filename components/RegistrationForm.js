@@ -19,7 +19,7 @@ const RegisterForm = () => {
         });
 
         const data = await response.json();
-        console.log(data.message);
+        console.log(data.results);
     }
 
     console.log('Username: ', username);

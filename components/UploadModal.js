@@ -16,6 +16,22 @@ const UploadModal = () => {
 
     var uploaded = false;
 
+    const uploadData = async (event) => {
+        event.preventDefault();
+
+        const response = await fetch('/api/registeruser', {
+            method: 'POST',
+            body: JSON.stringify( {artName: artName, artistName: artistName, genre: genre, currentBid: startingBid, endDate:endingDate} ),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const data = await response.json();
+        console.log(data.results);
+    }
+
+
   return (
     <div className='bg-black bg-opacity-50 absolute inset-0 flex justify-center items-center'>
         <div className='bg-Card h-[30rem] w-[60rem] flex flex-row justify-items-center rounded-lg'>
@@ -28,33 +44,33 @@ const UploadModal = () => {
                 </button>}
             </div>
             <div className='bg-White border-x-[0.01rem] my-10'></div>
-            <div className='grid gap-4 my-10 mx-10 justify-center items-center font-Space text-white'>
+            <div className='grid gap-4 my-10 mx-10 justify-center items-center font-Space'>
                 <div className='flex flex-row gap-4'>
-                    <h1 className='text-2xl'>Artname </h1>
+                    <h1 className='text-2xl text-white'>Artname </h1>
                     <input type={'text'} className='sm form-input rounded-md' placeholder='Artname'
                         onChange={({target}) => setArtname(target?.value)}/>
                 </div>
 
                 <div className='flex flex-row gap-4'>
-                    <h1 className='text-2xl'>Genre </h1>
+                    <h1 className='text-2xl text-white'>Genre </h1>
                     <input type={'text'} className='sm form-input rounded-md' placeholder='Genre'
                         onChange={({target}) => setGenre(target?.value)}/>
                 </div>
 
                 <div className='flex flex-row gap-4'>
-                    <h1 className='text-2xl'>Initial Bid </h1>
+                    <h1 className='text-2xl text-white'>Initial Bid </h1>
                     <input type={'text'} className='sm form-input rounded-md' placeholder='Initial Bid'
                         onChange={({target}) => setStartingBid(target?.value)}/>
                 </div>
 
                 <div className='flex flex-row gap-4'>
-                    <h1 className='text-2xl'>Ending Date </h1>
-                    <input type={'datetime-local'} className='sm form-input rounded-md text-[#6B7280]'
+                    <h1 className='text-2xl text-white'>Ending Date </h1>
+                    <input type={'datetime-local'} className='sm form-input rounded-md'
                         onChange={({target}) => setEndingDate(target?.value)}/>
                 </div>
                 <div className='flex justify-center'>
                     <button className='btn border-primary border-2 text-white font-Space'>
-                        Submit
+                        Upload
                     </button>
                 </div>
             </div>

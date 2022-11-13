@@ -18,6 +18,13 @@ const LoginForm = () => {
 
         const data = await response.json();
         console.log(data.results);
+
+        if (data.results != undefined)
+        {
+            localStorage.setItem('user', data.results.username);
+        }
+
+        else console.log("User not found!");
     }
 
     return (

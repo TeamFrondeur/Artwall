@@ -34,7 +34,7 @@ const RegisterForm = () => {
             <input type={'text'} className='sm form-input rounded-md' placeholder='Username'
                 onChange={({target}) => setUsername(target?.value)}/>
 
-            <input type={'text'} className='sm form-input rounded-md' placeholder='E-mail' 
+            <input type={'email'} className='sm form-input rounded-md' placeholder='E-mail' 
                 onChange={({target}) => setEmail(target?.value)}/>
 
             <input type={'password'} className='sm form-input rounded-md' placeholder='Password'

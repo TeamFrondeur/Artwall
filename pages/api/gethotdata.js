@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   
 
     try {
-        const querySQL = "select * from ARTS";
+        const querySQL = "select idArt, artName, currentBid, numBidders, artPath, imagePath from ARTS, USERS";
         const valuesParams = [];
         const [data] = await query({query: querySQL, values: valuesParams});
 

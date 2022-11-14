@@ -1,15 +1,30 @@
-import {query} from "../../lib/db"
+import { IncomingForm } from 'formidable'
+import { promises as fs } from 'fs'
 
+var mv = require('mv');
+
+
+export const config = {
+    api: {
+       bodyParser: false,
+    }
+};
+ 
 export default async function handler(req, res) {
-    try {
-        if (req.method === 'POST'){
-            const querySQL = "INSERT INTO ARTS (artName, artistName, genre, currentBid, numBidders, artPath, endDate) VALUES(?, ?, ?, 0, ?, ?);";
-            const valuesParams = [req.body.artName, req.body.artistName, req.body.genre, req.body.currentBid, req.body.artPath, req.body.endDate];
-            const data = query({query: querySQL, values: valuesParams});
-            res.status(200).json({ results: data});
-        }   
-    }
-    catch (error) {
-        throw Error(error.message);
-    }
+    
+    const data = await new Promise((resolve, reject) => {
+       const form = new IncomingForm()
+       
+        form.parse(req, (err, fields, files) => {
+            if (err) return reject(err)
+            console.log(fields, files)
+            console.log(files.file.filepath)
+            var oldPath = files.file.filepath;
+            var newPath = `./public/images/arts/${files.file.originalFilename}`;
+            mv(oldPath, newPath, function(err) {
+            });
+            res.status(200).json({ fields, files })
+        })
+    })
+    
 }

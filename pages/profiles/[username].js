@@ -16,7 +16,7 @@ const ProfileDetail = () => {
         async function getProfileData() {
             const response = await fetch('/api/getprofile', {
                 method: 'POST',
-                body: JSON.stringify({username: username}),
+                body: JSON.stringify({userName: username}),
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -24,22 +24,61 @@ const ProfileDetail = () => {
 
             const res = await response.json();
             setDataResponse(res.results);
+            // console.log(dataResponse);
+
+            const response2 = await fetch('/api/getprofileart', {
+                method: 'POST',
+                body: JSON.stringify({artistName: username}),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            });
+            const res2 = await response2.json();
+            setArtResponse(res2.results);
+            // console.log(artResponse);
         }
         getProfileData();
     },[router.query.username, router.isReady]);
 
     return (
-    <div className='bg-Main h-screen w-screen'>
-        <div className='flex flex-row'>
-            <div className='px-5 py-5'>
-                <ProfileCard name={dataResponse.username}/>
-            </div>
-            <div className='bg-red-500 '>
-              <ProflieArt />
+        <div className='bg-Main w-screen overflow-hidden'>
+            <div className='flex flex-row'>
+                <div className='px-5 py-5'>
+                    <ProfileCard name={dataResponse.userName} image={dataResponse.imagePath}/>
+                </div>
+                <div className='my-5 mx-5 rounded-md'>
+                  <div className='bg-Card rounded-md'>
+                    <h1 className='max-w-max px-3 py-1 text-3xl font-Space text-white'>Active Listings</h1>
+                  </div>
+                  <div className='w-screen overflow-x-auto scroll whitespace-nowrap scroll-smooth'>
+                    <div className='flex flex-row gap-5 py-2 '>
+                        {artResponse.map((item) => {
+                            return (
+                                <div key={item.idART}>
+                                    <ProflieArt 
+                                        artName={item.artName} 
+                                        currentBid={item.currentBid} 
+                                        numBidders={item.numBidders}
+                                        artPath={item.artPath}
+                                        imagePath={dataResponse.imagePath}
+                                    />
+                                </div>
+                            
+                            )
+                        })}
+                    </div>
+                  </div>
+                  {/* <div className='bg-Card rounded-md'>
+                    <h1 className='px-3 py-1 text-3xl font-Space text-white'>Inventory</h1>
+                  </div>
+                  <div className='grid grid-cols-2 py-2 justify-items-center'>
+                    <ProflieArt />
+                    <ProflieArt />
+                  </div> */}
+                </div>
             </div>
         </div>
-    </div>
-    )
+      )
 }
 
 export default ProfileDetail;

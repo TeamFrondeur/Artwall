@@ -1,7 +1,38 @@
 import React from 'react'
 import Link from 'next/link'
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 const Navbar = () => {
+    const [user, setUser] = useState();
+    const [drop, setDrop] = useState(false);
+    const [dataResponse, setDataResponse] = useState();
+    useEffect(() => {
+        setUser(localStorage.getItem('user'));
+        
+        // async function getNavData() {
+        //     const response = await fetch('api/getnavdata', {
+        //       method: 'POST',
+        //       body: JSON.stringify({userName: user}),
+        //       headers: {
+        //         'Content-Type': 'application/json'
+        //       }
+        //     });
+        //     const res = await response.json();
+        //     console.log(res.results);
+        //     setDataResponse(res.results);
+        // }
+        // getNavData();
+
+    }, [])
+
+    console.log("Logged In: " + user);
+
+    const handleSignOut = () => {
+        setUser("");
+        localStorage.clear();
+    }
+
   return (
     <nav className="bg-Main flex flex-row px-16 py-2 font-Space justify-between">
         <Link className="text-fuchsia-500 text-xl" href="/">Artwall</Link>
@@ -24,11 +55,44 @@ const Navbar = () => {
                 </form>
             </li>
             <li>
-                <Link href="/login">
-                    <button className="btn border-primary border-2 rounded-md">
-                        Login
-                    </button>
-                </Link>
+                { user ?
+                    <div className='relative'>
+                        <button className='btn border-primary border-2' onClick={() => setDrop(!drop)}>
+                            Profile{/* <Image src={`/images/profiles/${dataResponse.imagePath}`} alt='' width={100} height={100} className='rounded-lg self-center'/> */}
+                        </button>
+                        {drop && 
+                            <div className='absolute right-0 w-[8rem] bg-Card  rounded-lg flex flex-col items-center'>
+                                <ul>
+                                    <li>
+                                        <Link href={`/profiles/${user}`}>
+                                            <button className="btn block hover:bg-[#3e475e]">Go To Profile</button>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <button className="btn block hover:bg-[#3e475e]" onClick={handleSignOut}>Sign Out</button>
+                                    </li>
+                                </ul>
+                            </div> 
+                        }
+                       
+                    </div>
+                    
+                    // <Link href={`/profiles/${user}`}>
+                       
+                    // </Link>
+                    
+                :
+                    <Link href="/login">
+                        <button className="btn border-primary border-2 rounded-md">
+                            Login
+                        </button>
+                    </Link>
+                }
+                {/* <Link href="/login">
+                        <button className="btn border-primary border-2 rounded-md">
+                            Login
+                        </button>
+                </Link> */}
             </li>
         </ul>
     </nav>

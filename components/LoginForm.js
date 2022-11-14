@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
+import { useRouter } from 'next/router';
 import Link from 'next/link'
 
 const LoginForm = () => {
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
-
+    const router = useRouter();
     const postData = async (event) => {
         event.preventDefault();
 
@@ -22,6 +23,8 @@ const LoginForm = () => {
         if (data.results != undefined)
         {
             localStorage.setItem('user', data.results.username);
+            console.log("Logged in!");
+            router.push('/');
         }
 
         else console.log("User not found!");

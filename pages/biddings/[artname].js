@@ -2,7 +2,9 @@ import React from 'react'
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import BidderSection from '../../components/BidderSection';
-const biddings = () => {
+import BidSection from '../../components/BidSection';
+import BidHistorySection from '../../components/BidHistorySection';
+const Biddings = () => {
     const router = useRouter();
     const { artname } = router.query;
     const [dataResponse, setDataResponse] = useState([]);
@@ -25,10 +27,12 @@ const biddings = () => {
     // },[router.query.artname, router.isReady]);
 
     return (
-    <div className='bg-Main flex'>
+    <div className='bg-Main flex flex-row justify-around items-center'>
         <BidderSection />
+        <BidSection />
+        <BidHistorySection />
     </div>
   )
 }
 
-export default biddings
+export default Biddings

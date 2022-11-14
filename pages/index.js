@@ -7,21 +7,21 @@ import InstructSection from '../components/InstructSection'
 import TopSection from '../components/TopSection'
 import styles from '../styles/Home.module.css'
 
-export default function Home({data}) {
+export default function Home({ data }) {
   return (
     <>
       <div className='bg-Main flex justify-center'>
         <TopSection />
       </div>
       <div className='bg-Main flex justify-center py-20'>
-        <HotSection data={data}/>
+        <HotSection data={data} />
       </div>
       <div className='bg-Main flex justify-center py-20'>
         <InstructSection />
       </div>
-      <div className='bg-Main flex justify-center py-20'>
+      {/* <div className='bg-Main flex justify-center py-20'>
         <ArtistSection />
-      </div>
+      </div> */}
     </>
   )
 }

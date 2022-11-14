@@ -1,32 +1,37 @@
 import React from 'react'
 import Image from 'next/image'
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { data } from 'autoprefixer';
 
-const ArtCard = () => {
+const BidCard = () => {
 
   const [dataResponse, setDataResponse] = useState([]);
+  const router = useRouter();
+  const { artname } = router.query;
+  console.log(artname);
   useEffect(() => {
-    async function getPageData() {
-      const apiUrlEndpoint = `http://localhost:3000/api/gettrendingart`;
-      const response = await fetch(apiUrlEndpoint);
+    async function getBidCard() {
+      const response = await fetch('/api/getbidcard', {
+        method: 'POST',
+        body: JSON.stringify({ bidArt: artname }),
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+
       const res = await response.json();
-      console.log(res.results);
       setDataResponse(res.results);
+      console.log(dataResponse);
     }
-    getPageData();
-  }, [])
+
+    getBidCard();
+
+  }, [router.query.artname, router.isReady])
 
 
   return (
-    <div className='bg-Card h-[29rem] w-[22rem] rounded-md flex flex-col font-Space' onFocus={() => {
-      if (localStorage.getItem('user') && localStorage.getItem('user') != dataResponse.artistName) {
-        return (
-          <div>
-            <button className='font-Space text-Artwall'>Join Bid</button>
-          </div>
-        )
-      }
-    }}>
+    <div className='bg-Card h-[29rem] w-[22rem] rounded-md flex flex-col font-Space'>
       <Image src={`/images/arts/${dataResponse.artPath}`} className='rounded-lg self-center my-6' alt='' width='200' height='100' />
       <div className='flex flex-row justify-between px-6'>
         <h1 className='text-lg text-white'>{dataResponse.artName}</h1>
@@ -62,4 +67,4 @@ const ArtCard = () => {
   )
 }
 
-export default ArtCard
+export default BidCard

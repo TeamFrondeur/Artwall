@@ -1,9 +1,14 @@
 import React from 'react'
 import Image from 'next/image'
-const HotArtCard = ({image, artname, artist, bid, bidders, timer}) => {
+import { useRouter } from 'next/router'
+
+const HotArtCard = ({ image, artname, artist, bid, bidders, timer }) => {
+  const router = useRouter();
   return (
-    <div className='bg-Card h-[29rem] w-[22rem] rounded-md flex flex-col justify-around font-Space'>
-      <Image src={`/images/arts/${image}`} className='rounded-lg self-center my-6' alt='' width='200' height='100'/>
+    <div className='bg-Card h-[29rem] w-[22rem] rounded-md flex flex-col justify-around font-Space' onClick={() => {
+      router.push(`/biddings/${artname}`);
+    }}>
+      <Image src={`/images/arts/${image}`} className='rounded-lg self-center my-6' alt='' width='200' height='100' />
       <div className='flex flex-col'>
         <div className='flex flex-row justify-between px-6'>
           <h1 className='text-lg text-white'>{artname}</h1>
@@ -36,7 +41,7 @@ const HotArtCard = ({image, artname, artist, bid, bidders, timer}) => {
           </ul>
         </div>
       </div>
-      
+
     </div>
   )
 }

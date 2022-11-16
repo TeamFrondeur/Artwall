@@ -1,9 +1,9 @@
 import React from 'react'
 import Image from 'next/image'
 import { useState, useEffect } from 'react';
-
+import { useRouter } from 'next/router';
 const ArtCard = () => {
-
+  const router = useRouter();
   const [dataResponse, setDataResponse] = useState([]);
   useEffect(() => {
     async function getPageData() {
@@ -18,14 +18,8 @@ const ArtCard = () => {
 
 
   return (
-    <div className='bg-Card h-[29rem] w-[22rem] rounded-md flex flex-col font-Space' onFocus={() => {
-      if (localStorage.getItem('user') && localStorage.getItem('user') != dataResponse.artistName) {
-        return (
-          <div>
-            <button className='font-Space text-Artwall'>Join Bid</button>
-          </div>
-        )
-      }
+    <div className='bg-Card h-[29rem] w-[22rem] rounded-md flex flex-col font-Space' onClick={() => {
+      router.push(`/biddings/${dataResponse.artName}`);
     }}>
       <Image src={`/images/arts/${dataResponse.artPath}`} className='rounded-lg self-center my-6' alt='' width='200' height='100' />
       <div className='flex flex-row justify-between px-6'>

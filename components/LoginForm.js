@@ -19,6 +19,20 @@ const LoginForm = () => {
 
         const data = await response.json();
         console.log(data.results);
+        // if (data.results.length == 0) {
+        //     alert("User not found!");
+        // } else {
+        //     var noSuchUser = false;
+        //     data.results.map((result) => {
+        //         if (result.username != username) {
+        //             noSuchUser = true;
+        //         }
+        //         else if (result.password != password) {
+        //             noSuchUser = false;
+        //         }
+        //     });
+
+        // }
 
         if (data.results != undefined) {
             localStorage.setItem('user', data.results.username);

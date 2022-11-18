@@ -7,7 +7,7 @@ const ArtCard = () => {
   const [dataResponse, setDataResponse] = useState([]);
   useEffect(() => {
     async function getPageData() {
-      const apiUrlEndpoint = `http://localhost:3000/api/gettrendingart`;
+      const apiUrlEndpoint = `/api/gettrendingart`;
       const response = await fetch(apiUrlEndpoint);
       const res = await response.json();
       console.log(res.results);

@@ -119,7 +119,7 @@ const UploadModal = ({ setModalOn }) => {
 
                     <div className='flex flex-row gap-4'>
                         <h1 className='text-2xl text-white'>Genre </h1>
-                        <select id="genres" className='sm px-2 rounded-md' placeholder='  '
+                        <select id="genres" className='sm px-2 w-[10rem] rounded-md' placeholder='  '
                             onChange={({ target }) => setGenre(target?.value)}>
                             <option value="Abstract">Abstract</option>
                             <option value="Flora">Flora</option>

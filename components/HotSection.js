@@ -61,10 +61,6 @@ const HotSection = () => {
               </div>
             )
           })}
-
-          {/* <MiniArtCard image={dataResponse.artPath} artname={dataResponse.artName} 
-            artist={dataResponse.imagePath} bid={dataResponse.currentBid}
-            bidders={dataResponse.numBidders}/> */}
         </div>
     </div>
     

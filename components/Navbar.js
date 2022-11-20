@@ -70,9 +70,10 @@ const Navbar = () => {
                                 <div className='absolute right-0 w-[8rem] bg-Card  rounded-lg flex flex-col items-center'>
                                     <ul>
                                         <li>
-                                            <Link href={`/profiles/${user}`}>
-                                                <button className="btn block hover:bg-[#3e475e]">Go To Profile</button>
-                                            </Link>
+                                            <button className="btn block hover:bg-[#3e475e]" onClick={() => {
+                                                    router.push(`/profiles/${user}`);
+                                                    setDrop(!drop);}}> Go To Profile
+                                            </button>
                                         </li>
                                         <li>
                                             <button className="btn block hover:bg-[#3e475e]" onClick={handleSignOut}>Sign Out</button>

@@ -2,11 +2,13 @@ import { query } from "../../lib/db"
 
 export default async function handler(req, res) {
   try {
-    const querySQL = "SELECT bidderName,  from BIDS where userName = ?;";
-    const valuesParams = [req.body.userName];
-    const data = await query({ query: querySQL, values: valuesParams });
-
-    res.status(200).json({ results: data });
+    if (req.method === 'POST'){
+      const querySQL = "SELECT idBIDS, bidderName, USERS.imagePath from BIDS INNER JOIN USERS ON bidderName = USERS.userName and bidArt = ?;";
+      const valuesParams = [req.body.bidArt];
+      const data = await query({ query: querySQL, values: valuesParams });
+      console.log(data);
+      res.status(200).json({ results: data });
+    }
   }
   catch (error) {
     throw Error(error.message);

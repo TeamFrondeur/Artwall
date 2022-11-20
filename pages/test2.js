@@ -4,7 +4,7 @@ import { io } from 'socket.io-client'
 
 let socket;
 
-const test = () => {
+const test2 = () => {
 
   const [input, setInput] = useState('');
 
@@ -46,4 +46,4 @@ const test = () => {
   )
 }
 
-export default test
+export default test2

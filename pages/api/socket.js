@@ -9,10 +9,14 @@ const SocketHandler = (req, res) => {
     res.socket.server.io = io
 
     io.on('connection', socket => {
-      socket.on('input-change', msg => {
-        socket.broadcast.emit('update-input', msg)
+      socket.on('new-bid', bid => {
+        console.log("Bid: " + bid);
+        socket.broadcast.emit('update-bid', bid);
       })
     })
   }
+  
   res.end()
 }
+
+export default SocketHandler

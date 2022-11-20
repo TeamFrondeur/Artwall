@@ -1,13 +1,13 @@
--- MariaDB dump 10.19  Distrib 10.9.2-MariaDB, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.31, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: Artwall
+-- Host: localhost    Database: Artwall
 -- ------------------------------------------------------
--- Server version	10.9.2-MariaDB
+-- Server version	8.0.31-0ubuntu0.20.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,18 +21,19 @@
 
 DROP TABLE IF EXISTS `BIDS`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `BIDS` (
-  `idBIDS` int(11) NOT NULL AUTO_INCREMENT,
-  `bidArt` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bidderName` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bidAmount` int(11) DEFAULT NULL,
+  `idBIDS` int NOT NULL AUTO_INCREMENT,
+  `bidArt` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bidderName` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bidAmount` int DEFAULT NULL,
+  `bidTime` datetime DEFAULT NULL,
   PRIMARY KEY (`idBIDS`),
-  UNIQUE KEY `bidArt_UNIQUE` (`bidArt`),
   KEY `bidderName` (`bidderName`),
-  CONSTRAINT `BIDS_ibfk_1` FOREIGN KEY (`bidArt`) REFERENCES `ARTS` (`artName`),
-  CONSTRAINT `BIDS_ibfk_2` FOREIGN KEY (`bidderName`) REFERENCES `USERS` (`userName`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  KEY `fk_BIDS_art_idx` (`bidArt`),
+  CONSTRAINT `BIDS_ibfk_2` FOREIGN KEY (`bidderName`) REFERENCES `USERS` (`userName`),
+  CONSTRAINT `fk_BIDS_art` FOREIGN KEY (`bidArt`) REFERENCES `ARTS` (`artName`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +42,7 @@ CREATE TABLE `BIDS` (
 
 LOCK TABLES `BIDS` WRITE;
 /*!40000 ALTER TABLE `BIDS` DISABLE KEYS */;
+INSERT INTO `BIDS` VALUES (1,'Ensalada y Sol','why',5000,NULL),(2,'Ensalada y Sol','alif1',5500,NULL),(3,'yes','alif1',1500,'2022-11-20 18:18:10'),(4,'yes','chipa',2500,'2022-11-20 17:20:10'),(5,'yes','alif1',3500,'2022-11-20 18:19:10'),(6,'yes','chipa',4000,'2022-11-20 18:20:10');
 /*!40000 ALTER TABLE `BIDS` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-14  9:21:42
+-- Dump completed on 2022-11-20 19:53:58

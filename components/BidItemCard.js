@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-const BidItemCard = ({data, bid}) => {
+const BidItemCard = ({data}) => {
 
   // const [dataResponse, setDataResponse] = useState([]);
   // const router = useRouter();
@@ -45,7 +45,7 @@ const BidItemCard = ({data, bid}) => {
             <h2 className='text-gray-500 text-lg'>Current Bid</h2>
           </li>
           <li>
-            <h3 className='text-white text-md'>{(bid != null) ? bid : data.currentBid} BDT</h3>
+            <h3 className='text-white text-md'>{data.currentBid} BDT</h3>
           </li>
         </ul>
         <ul className='flex flex-col items-center'>

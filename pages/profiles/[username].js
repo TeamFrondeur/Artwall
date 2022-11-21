@@ -11,40 +11,47 @@ const ProfileDetail = () => {
     const { username } = router.query;
     const [dataResponse, setDataResponse] = useState([]);
     const [artResponse, setArtResponse] = useState([]);
-    
+    const [refresh, setRefresh] = useState(false);
+
     useEffect(() => {
-        async function getProfileData() {
-            const response = await fetch('/api/getprofile', {
-                method: 'POST',
-                body: JSON.stringify({userName: username}),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-
-            const res = await response.json();
-            setDataResponse(res.results);
-            // console.log(dataResponse);
-
-            const response2 = await fetch('/api/getprofileart', {
-                method: 'POST',
-                body: JSON.stringify({artistName: username}),
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            });
-            const res2 = await response2.json();
-            setArtResponse(res2.results);
-            // console.log(artResponse);
-        }
         getProfileData();
     },[router.query.username, router.isReady]);
+
+    useEffect(() => {
+        getProfileData();
+    },[refresh]);
+
+
+    async function getProfileData() {
+        const response = await fetch('/api/getprofile', {
+            method: 'POST',
+            body: JSON.stringify({userName: username}),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const res = await response.json();
+        setDataResponse(res.results);
+        console.log(dataResponse);
+
+        const response2 = await fetch('/api/getprofileart', {
+            method: 'POST',
+            body: JSON.stringify({artistName: username}),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+        const res2 = await response2.json();
+        setArtResponse(res2.results);
+        console.log(artResponse);
+    }
 
     return (
         <div className='bg-Main w-screen overflow-hidden'>
             <div className='flex flex-row'>
                 <div className='px-5 py-5'>
-                    <ProfileCard name={dataResponse.userName} image={dataResponse.imagePath}/>
+                    <ProfileCard name={dataResponse.userName} image={dataResponse.imagePath} refresh={refresh} setRefresh={setRefresh}/>
                 </div>
                 <div className='my-5 mx-5 rounded-md'>
                   <div className='bg-Card rounded-md'>

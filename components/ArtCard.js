@@ -2,9 +2,22 @@ import React from 'react'
 import Image from 'next/image'
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+
 const ArtCard = () => {
   const router = useRouter();
   const [dataResponse, setDataResponse] = useState([]);
+  const [timerDays, setTimerDays] = useState();
+  const [timerHours, setTimerHours] = useState();
+  const [timerMinutes, setTimerMinutes] = useState();
+  const [timerSeconds, setTimerSeconds] = useState();
+
+  let interval;
+
+  // const [dateTime, setDateTime] = useState();
+  
+  // console.log("Datetime: " + dataResponse.endDate.split('-')[0] + " " + dataResponse.endDate.split('-')[1]);
+  // console.log(Date(dataResponse.endDate) - Date().get);
+
   useEffect(() => {
     async function getPageData() {
       const apiUrlEndpoint = `/api/gettrendingart`;
@@ -12,9 +25,41 @@ const ArtCard = () => {
       const res = await response.json();
       console.log(res.results);
       setDataResponse(res.results);
+      // difTime();
     }
     getPageData();
-  }, [])
+    
+  }, []);
+
+  useEffect(() => {
+    startTimer();
+  });
+  // let t = dateTime.split(/[: -]/);
+  // let d = new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5]));
+
+  // console.log(d);
+
+  const startTimer = () => {
+    const date1 = new Date();
+    const date2 = new Date(date1.toISOString());
+    const date3 = new Date(dataResponse.endDate);
+    const distance = date3 - date2;
+    // console.log(distance);
+    const days = Math.floor(distance / (24 * 60 * 60 * 1000));
+    const hours = Math.floor(distance % (24 * 60 * 60 * 1000) / (1000 * 60 * 60));
+    const minutes = Math.floor(distance % (60 * 60 * 1000) / (1000 * 60));
+    const seconds = Math.floor(distance % (60 * 1000) / (1000));
+
+    if (distance < 0) {
+      clearInterval(interval.current);
+    }
+    else {
+      setTimerDays(days);
+      setTimerHours(hours);
+      setTimerMinutes(minutes);
+      setTimerSeconds(seconds);
+    }
+  }
 
 
   return (
@@ -48,7 +93,7 @@ const ArtCard = () => {
             <h2 className='text-gray-500 text-lg'>Ending In</h2>
           </li>
           <li>
-            <h3 className='text-white text-md'>10h 43m 26s</h3>
+            <h3 className='text-white text-md'>{timerDays}d {timerHours}h {timerMinutes}m {timerSeconds}s</h3>
           </li>
         </ul>
       </div>

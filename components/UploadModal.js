@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
-import { data } from 'autoprefixer';
 
 const UploadModal = ({ setModalOn }) => {
 
@@ -76,6 +75,7 @@ const UploadModal = ({ setModalOn }) => {
 
         const data = await response.json();
         console.log(data.results);
+        alert("Image uploaded");
         setModalOn(false);
     }
 
@@ -141,7 +141,7 @@ const UploadModal = ({ setModalOn }) => {
                         <input type={'datetime-local'} className='sm form-input rounded-md'
                             onChange={({ target }) => setEndingDate(target?.value)} />
                     </div>
-                    <div className='flex  justify-around'>
+                    <div className='flex justify-around'>
                         <button className='btn border-primary border-2 text-white font-Space' onClick={uploadData}>
                             Upload
                         </button>

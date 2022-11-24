@@ -37,6 +37,20 @@ const BidItemCard = ({data}) => {
     console.log(maxBidder);
   }
 
+  async function updateOwner() {
+    const response = await fetch('/api/updateowner', {
+      method: 'POST',
+      body: JSON.stringify({ maxBidder: maxBidder, bidArt: artname }),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+
+    const res = await response.json();
+    setMaxBidder(res.results);
+    console.log(maxBidder);
+  }
+
   // useEffect(() => {
     // async function getBidCard() {
     //   const response = await fetch('/api/getbidcard', {
@@ -71,16 +85,22 @@ const BidItemCard = ({data}) => {
       const seconds = Math.floor((distance % (60 * 1000)) / 1000);
 
       if (distance < 0) {
-        clearInterval(interval.current);
+        getMaxBidder();
+        updateOwner();
+
         if (localStorage.getItem('user') === maxBidder.bidderName)
          alert("Congratulations!");
         else alert("Bid ended!");
+
+        clearInterval(interval.current);
+
       } else {
         setTimerDays(days);
         setTimerHours(hours);
         setTimerMinutes(minutes);
         setTimerSeconds(seconds);
       }
+
     });
   };
 

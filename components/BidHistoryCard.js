@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
-const BidHistoryCard = ({image, amount}) => {
+const BidHistoryCard = ({image, amount, name}) => {
 
   // const [dataResponse, setDataResponse] = useState([]);
   // useEffect(() => {
@@ -35,6 +35,7 @@ const BidHistoryCard = ({image, amount}) => {
           className='rounded-full '
           alt=''
         />
+        <h3 className='text-2xl font-Space text-white'>{name}</h3>
         <h1 className='px-6 text-3xl text-white font-Space'>{amount}</h1>
       </div>
   )

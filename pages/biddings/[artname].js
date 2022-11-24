@@ -124,7 +124,7 @@ const Biddings = () => {
         {history.map((item) => {
           return (
             <div key={item.idBIDS}>
-              <BidHistoryCard image={item.imagePath} amount={item.bidAmount} />
+              <BidHistoryCard image={item.imagePath} amount={item.bidAmount} name={item.bidderName}/>
             </div>
           )
         })}

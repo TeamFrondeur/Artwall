@@ -5,31 +5,84 @@ import { useRouter } from 'next/router';
 
 const BidItemCard = ({data}) => {
 
+  const [timerDays, setTimerDays] = useState();
+  const [timerHours, setTimerHours] = useState();
+  const [timerMinutes, setTimerMinutes] = useState();
+  const [timerSeconds, setTimerSeconds] = useState();
+  const [maxBidder, setMaxBidder] = useState();
+  let interval;
+
+  useEffect(() => {
+    startTimer();
+  });
+
+
   // const [dataResponse, setDataResponse] = useState([]);
   // const router = useRouter();
   // const { artname } = router.query;
   // console.log(artname);
 
   
+  async function getMaxBidder() {
+    const response = await fetch('/api/getmaxbidder', {
+      method: 'POST',
+      body: JSON.stringify({ bidArt: artname }),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+
+    const res = await response.json();
+    setMaxBidder(res.results);
+    console.log(maxBidder);
+  }
 
   // useEffect(() => {
-  //   async function getBidCard() {
-  //     const response = await fetch('/api/getbidcard', {
-  //       method: 'POST',
-  //       body: JSON.stringify({ bidArt: artname }),
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       }
-  //     });
+    // async function getBidCard() {
+    //   const response = await fetch('/api/getbidcard', {
+    //     method: 'POST',
+    //     body: JSON.stringify({ bidArt: artname }),
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     }
+    //   });
 
-  //     const res = await response.json();
-  //     setDataResponse(res.results);
-  //     console.log(dataResponse);
-  //   }
+    //   const res = await response.json();
+    //   setDataResponse(res.results);
+    //   console.log(dataResponse);
+    // }
 
   //   getBidCard();
 
   // }, [router.query.artname, router.isReady])
+
+  const startTimer = () => {
+    interval = setInterval(() => {
+      const date1 = new Date();
+      const date2 = new Date(date1.toISOString());
+      const date3 = new Date(data.endDate);
+      const distance = date3 - date2;
+      console.log(distance);
+      const days = Math.floor(distance / (24 * 60 * 60 * 1000));
+      const hours = Math.floor(
+        (distance % (24 * 60 * 60 * 1000)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor((distance % (60 * 60 * 1000)) / (1000 * 60));
+      const seconds = Math.floor((distance % (60 * 1000)) / 1000);
+
+      if (distance < 0) {
+        clearInterval(interval.current);
+        if (localStorage.getItem('user') === maxBidder.bidderName)
+         alert("Congratulations!");
+        else alert("Bid ended!");
+      } else {
+        setTimerDays(days);
+        setTimerHours(hours);
+        setTimerMinutes(minutes);
+        setTimerSeconds(seconds);
+      }
+    });
+  };
 
 
   return (
@@ -61,7 +114,9 @@ const BidItemCard = ({data}) => {
             <h2 className='text-gray-500 text-lg'>Ending In</h2>
           </li>
           <li>
-            <h3 className='text-white text-md'>10h 43m 26s</h3>
+            <h3 className="text-white text-md">
+              {timerDays}d {timerHours}h {timerMinutes}m {timerSeconds}s
+            </h3>
           </li>
         </ul>
       </div>
